@@ -1,11 +1,9 @@
 from player import Player
-#import ctypes
-#import time
-#lib = ctypes.CDLL('FakeInputWin')
 from speech_recog import *
 from text_to_speech import *
-
 import webbrowser
+
+#activities must return None or the name of the next node or "quit"
 
 def theaterActivity(player):
     speak("Hello! Welcome to the Lehigh Valley Movie Theater")
@@ -13,6 +11,7 @@ def theaterActivity(player):
     speak("or you can go to the concessions for some snacks")
     speak("Where would you like to go, " + player.name + "?")
 
+    return None
 
 def boxOfficeActivity(player, box_args):
     speak("Welcome to the box office")
@@ -29,7 +28,8 @@ def boxOfficeActivity(player, box_args):
     player.completed["ticket"] = movieChoice
     speak("Would you like to go to the concessions?")
     speak("or would you like to go to the ticket checker")
-    
+
+    return None
 
 def concessionsActivity(player, menu):
     done = False
@@ -52,6 +52,8 @@ def concessionsActivity(player, menu):
     speak("If you do not have your ticket yet, go to the box office")
     speak("Otherwise you can go to the ticket checker")
 
+    return None
+
 def ticketCheckerActivity(player):
     speak("Hello, ticket please")
     if player.completed["ticket"].lower() == "jurassic world":
@@ -60,6 +62,8 @@ def ticketCheckerActivity(player):
         speak("Mad Max is in theater 1D, enjoy your movie!")
     speak("say movie to sit down and watch")
 
+    return None
+
 def movieActivity(player):
     speak("please power off you cellular devices")
     speak("sit back, relax and enjoy the show")
@@ -67,6 +71,8 @@ def movieActivity(player):
         webbrowser.open("https://www.youtube.com/watch?v=RFinNxS5KN4", new=1)
     if player.completed["ticket"].lower() == "mad max":
         webbrowser.open("https://www.youtube.com/watch?v=hEJnMQG9ev8", new=1)
+
+    return None
 
 def inList(lst, s):
     for x in lst[0]:

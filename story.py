@@ -48,14 +48,15 @@ class Story(object):
 		
 		# a node can have multiple activities associated with it
 		# each activity must be completed before moving to next node
-        current.activity.doActivity(player)
+	s = current.activity.doActivity(player)
 		
 		# prompts user to choose next node out of options
         '''speak("You are at the " + current.name + ". Where would you like to go now?")
         self.printChildren(current)'''
-		# s is users spoken response
-        s = getInputString()
-		# check if a valid choice has been made or if getNextNode has returned the current working node
+	# s is users spoken response
+	if s == None:
+            s = getInputString()
+	# check if a valid choice has been made or if getNextNode has returned the current working node
         newCurrent = self.getNextNode(current, s)
         while (not newCurrent == None) and (newCurrent == current or (not self.prereqsValid(player, newCurrent))):
             if newCurrent == current:
