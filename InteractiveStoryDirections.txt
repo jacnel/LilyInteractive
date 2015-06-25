@@ -1,11 +1,29 @@
 Create a story in the form of a flow chart, with nodes to represent different activities
+
 In main.py:
      Declare each node as an instance of a StoryNode object. This requires a name and you can optionally add a description.
+     
      Add connections between nodes by creating parent-child relationships using the .addChild() method.
-     If some nodes have prerequisites, append the name of the node that must be completed beforehand to the child’s prereqs list.
-     Once you have created your activities in theater_acts.py (or another file), instantiate them as an Activity object along with any other parameters. Then, match the activity to the correct node using the .setActivity() method.
-     In the runStory method, create your story line, which is a list of all of the nodes. The order doesn’t matter except the first element must be the first node in the story. Create a player to represent the player of the game. This requires the story line list. (If you want more data on the player, you can add them in player.py; it currently only asks for the name). Then create an instance of the Story object which takes the player and the story line as parameters. Finally, use the .walk() method on the story object with the player as a parameter.
+     
+     If some nodes have prerequisites, append the name of the node that must be completed beforehand to the child’s 
+     prereqs list.
+     
+     Once you have created your activities in theater_acts.py (or another file), instantiate them as an Activity object 
+     along with any other parameters. Then, match the activity to the correct node using the .setActivity() method.
+     
+     In the runStory method, create your story line, which is a list of all of the nodes. The order doesn’t matter except 
+     the first element must be the first node in the story. Create a player to represent the player of the game. 
+     This requires the story line list. (If you want more data on the player, you can add them in player.py; it currently 
+     only asks for the name). Then create an instance of the Story object which takes the player and the story line as 
+     parameters. Finally, use the .walk() method on the story object with the player as a parameter.
+     
 In theater_acts.py:
-     This file holds all of the activities that will be executed during the nodes in the story. Each node has one activity method associated with it. Each of these must take the player as a parameter at a minimum, but can take others.
-     If you pass multiple parameters to your activity constructor in main.py, they will become an n-tuple and therefore only one parameter (in addition to player) is needed in the activity definition. When referring to these in the activity, each argument is an element in the n-tuple. 
-     You should prompt the player to choose the next node inside the activity and all valid nodes are children of the current node. But story.py validates the input and checks prerequisites. 
+     This file holds all of the activities that will be executed during the nodes in the story. Each node has one 
+     activity method associated with it. Each of these must take the player as a parameter at a minimum, but can take others.
+     
+     If you pass multiple parameters to your activity constructor in main.py, they will become an n-tuple and therefore 
+     only one parameter (in addition to player) is needed in the activity definition. When referring to these in the 
+     activity, each argument is an element in the n-tuple. 
+     
+     You should prompt the player to choose the next node inside the activity and all valid nodes are children of the 
+     current node. But story.py validates the input and checks prerequisites. 
