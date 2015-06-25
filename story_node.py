@@ -6,7 +6,7 @@ from activity import Activity
 
 class StoryNode:
     # only necessary parameters are name and description
-    def __init__(self, a_name, a_description, the_prereqs = None, the_children = None, an_activity = None):
+    def __init__(self, a_name, a_description = None, the_prereqs = None, the_children = None, an_activity = None):
         self.name = str(a_name)
         self.description = a_description
         # add prerequisites for story node to be valid

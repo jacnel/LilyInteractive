@@ -76,9 +76,6 @@ class Story(object):
     def printChildren(self, current):
         for index,child in enumerate(current.children):
             speak(child.name)
-            
-'''def speak(prompt, x):
-    print prompt
-    lib.typeInBaldi(prompt)
-    time.sleep(x)'''
+
+
 

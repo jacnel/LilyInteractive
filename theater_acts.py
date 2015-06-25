@@ -11,23 +11,22 @@ def theaterActivity(player):
     speak("Hello! Welcome to the Lehigh Valley Movie Theater")
     speak("You can go to the box office and get your ticket")
     speak("or you can go to the concessions for some snacks")
-    speak("Where would you like to go?")
+    speak("Where would you like to go, " + player.name + "?")
 
 
-def boxOfficeActivity(player, movies):
+def boxOfficeActivity(player, box_args):
     speak("Welcome to the box office")
     speak("Which movie would you like to watch?")
-    
-    for i in range(len(movies[0])):
-       speak(str(movies[0][i]))
+    for i in range(len(box_args[0])):
+       speak(str(box_args[0][i]))
+       speak(str(box_args[1][i]))
     movieChoice = getInputString()
-    while not inList(movies, movieChoice):
+    while not inList(box_args[0], movieChoice):
         speak("Sorry, we don't have that movie. Pick another.")
-        for i in range(len(movies[0])):
-            speak(str(movies[0][i]))
+        for i in range(len(box_args[0])):
+            speak(str(box_args[0][i]))
         movieChoice = getInputString()
     player.completed["ticket"] = movieChoice
-
     speak("Would you like to go to the concessions?")
     speak("or would you like to go to the ticket checker")
     
