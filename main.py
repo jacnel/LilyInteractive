@@ -27,17 +27,21 @@ ticket_checker.prereqs.append("ticket")
 
 #create activities and add them to their corresponding nodes
 movies = ["Jurassic World", "Mad Max"]
-menu = ["Soda", "Popcorn", "Candy"]
+menu = ["soda", "Popcorn", "candy", "done"]     #must be lowercase
 
 t = Activity(theaterActivity)
 #movies and menu are lists of options for the activity
 #currently activities are simply choosing between options
 b = Activity(boxOfficeActivity, movies)
 c = Activity(concessionsActivity, menu)
+tc = Activity(ticketCheckerActivity)
+m = Activity(movieActivity)
   
-theater.addActivity(t)
-box_office.addActivity(b)
-concessions.addActivity(c)
+theater.setActivity(t)
+box_office.setActivity(b)
+concessions.setActivity(c)
+ticket_checker.setActivity(tc)
+movie.setActivity(m)
 
 def runStory():
     #create story from nodes and player 
@@ -47,7 +51,5 @@ def runStory():
 
     #run through the story
     story.walk(elise)
-    speak("enjoy the show!")
 
-    
-    
+runStory()

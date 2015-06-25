@@ -12,6 +12,6 @@ class Activity(object):
     def doActivity(self, player):
         player.completed[player.location] = True
         if len(self.args) == 0:
-            return self.func()
+            return self.func(player)
         else:
             return self.func(player, self.args)

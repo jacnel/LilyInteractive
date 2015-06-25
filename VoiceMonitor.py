@@ -3,7 +3,7 @@ import sys
 import clr
 import time
 
-from InteractiveStory import main
+import main
 
 sys.path.append("C:\Users\chuah\Desktop\Jacob's\LSSRobotWin32")
 

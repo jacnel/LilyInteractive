@@ -21,7 +21,7 @@ class Story(object):
         self.nodes = the_nodes
 	# returns child node given by players response, s, if s is a child of the current node
 	# otherwise the current node is returned because s is not a valid choice
-    def getNextNode(self, current, player, s):
+    def getNextNode(self, current, s):
         for c in current.children:
             if s.lower() == c.name.lower():
                 return c
@@ -29,6 +29,14 @@ class Story(object):
             return None
         else:
             return current
+
+    def prereqsValid(self, player, newCurrent):
+        for prereq in newCurrent.prereqs:
+            if not prereq in player.completed.keys() or player.completed[prereq] == False:
+                speak("you do not have your " + prereq + " yet! go somewhere else")
+                return False
+        return True
+                
     # moves the player to the next node in the story based on getNextNode
     def nextNode(self, player):
 		# sets current working node to the players present position
@@ -36,47 +44,33 @@ class Story(object):
 		
 		# automated greeting for node 
 		# TODO develop better automated 'welcome'
-        speak("Welcome to the " + current.name)
+        '''speak("Welcome to the " + current.name)'''
 		
 		# a node can have multiple activities associated with it
 		# each activity must be completed before moving to next node
-        for act in current.activities:
-            act.doActivity(player)
+        current.activity.doActivity(player)
 		
 		# prompts user to choose next node out of options
-        speak("You are at the " + current.name + ". Where would you like to go now?")
-        self.printChildren(current)
-        #i = raw_input()	
+        '''speak("You are at the " + current.name + ". Where would you like to go now?")
+        self.printChildren(current)'''
 		# s is users spoken response
         s = getInputString()
 		# check if a valid choice has been made or if getNextNode has returned the current working node
-        newCurrent = self.getNextNode(current, player, s)
-        while newCurrent == current:
-            speak("You can't go there. Please try again")
+        newCurrent = self.getNextNode(current, s)
+        while (not newCurrent == None) and (newCurrent == current or (not self.prereqsValid(player, newCurrent))):
+            if newCurrent == current:
+                speak("please choose a valid option")
+                for c in current.children:
+                    speak(c.name)
             s = getInputString()
-            newCurrent = self.getNextNode(current, player, s)
-        """while (not self.checkValid(player, s, current)):
-            s = voice_input()
-            while( s == None):
-                s = voice_input()
-            print(s)"""
-	#once a valid choice is made set current node then return it
+            newCurrent = self.getNextNode(current, s)
+            #once a valid choice is made set current node then return iter
 
         return newCurrent
 
-    """def checkValid(self, player, s, current):
-        if not s.isdigit() or int(s) < 1 or int(s) > len(current.children):
-            speak("enter a number on the list!")
-            return False
-        for prereq in current.children[int(s) - 1].prereqs:
-            if not prereq in player.completed.keys() or player.completed[prereq] == False:
-                speak("you do not have your " + prereq + " yet! go somewhere else")
-                return False
-        return True"""
             
-
     def walk(self, player): # function to 'play' the story
-        while (player.location != None and player.location.children != []): # while there are still nodes to visit, visit them using nextNode
+        while player.location != None: #or player.location.children != []): # while there are still nodes to visit, visit them using nextNode
             player.location = self.nextNode(player)
 
     def printChildren(self, current):

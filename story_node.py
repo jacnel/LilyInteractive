@@ -6,24 +6,24 @@ from activity import Activity
 
 class StoryNode:
     # only necessary parameters are name and description
-    def __init__(self, a_name, a_description, the_prereqs = None, the_children = None, the_activities = None):
+    def __init__(self, a_name, a_description, the_prereqs = None, the_children = None, an_activity = None):
         self.name = str(a_name)
         self.description = a_description
         # add prerequisites for story node to be valid
+        self.prereqs = []
         if the_prereqs != None:
-            self.prereqs = the_prereqs
-        else:
-            self.prereqs = []
+            for req in the_prereqs:
+                self.prereqs.append(req)
         # add children StoryNodes to this node, possible edges in graph
-        if the_children != None and isinstance(the_children[0], StoryNode):
-            self.children = the_children
-        else:
-            self.children = []
+        self.children = []
+        if the_children != None:
+            for child in the_children:
+                if isinstance(child, StoryNode):
+                    self.children.append(child)
         # add activities to the node to be completed
-        if the_activities != None and isinstance(the_activities[0], Activity):
-            self.activities = the_activities
-        else:
-            self.activities = []
+        self.activity = None
+        if an_activity != None:
+            self.activity = an_activity
 
     '''def getChild(self, child):
         for each_child in self.children:
@@ -41,9 +41,9 @@ class StoryNode:
         return self
 
 	# adds new activities to a node
-    def addActivity(self, activ): # an activity is simply a wrapper class for a user defined function (allows for customization of activities)
+    def setActivity(self, activ): # an activity is simply a wrapper class for a user defined function (allows for customization of activities)
         if isinstance(activ, Activity):
-            self.activities.append(activ)
+            self.activity = activ
         else:
             print "not an Activity"
         return self
