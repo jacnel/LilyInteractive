@@ -10,7 +10,7 @@ class Activity(object):
         self.args = args
 
     def doActivity(self, player):
-        player.completed[player.location] = True
+        player.completed[player.location.name] = True
         if len(self.args) == 0:
             return self.func(player)
         else:

@@ -4,16 +4,23 @@ from player import Player
 from activity import Activity
 from theater_acts import *
 from zoo_acts import *
+from pet_acts import *
 from text_to_speech import *
 from speech_recog import *
 import movie_story
 import zoo_story
+import pet_story
+import threading
+import run_gif2
+import time
 
 story_dict = {}
 story_dict["Movie"] = movie_story.movie_story_line
 story_dict["Zoo"] = zoo_story.zoo_story_line
+story_dict["Pets"] = pet_story.pet_story_line
 
 def getStory():
+    return story_dict["Zoo"]
     speak("Which story would you like to play?")
     for story in story_dict.keys():
         speak(story)
@@ -25,12 +32,17 @@ def getStory():
         speak("Sorry, we don't have that story right now.")
         speak("Please try another.")
 
+   
 def runStory():
+    t = threading.Thread(target = run_gif2.run_avatar)
+    t.start()
+    time.sleep(2)
     #create story from nodes and player 
     story_line = getStory()
     player = Player(story_line)
-    story = Story(player, story_line)
+    story = Story(player, story_line) 
     #run through the story
     story.walk(player)
 
 runStory()
+

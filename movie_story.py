@@ -24,14 +24,13 @@ ticket_checker.addChild(movie)
 ticket_checker.prereqs.append("ticket")
 
 #create activities and add them to their corresponding nodes
-movies = ["Jurassic World", "Mad Max"]
-menu = ["soda", "Popc orn", "candy", "done"]
-costs = ["$20", "$19.50"]
+movies = ["Inside Out", "Tomorrowland", "Minions", "Home"]
+menu = ["soda", "popcorn", "candy", "done"]
 
 t = Activity(theaterActivity)
 #movies and menu are lists of options for the activity
 #currently activities are simply choosing between options
-b = Activity(boxOfficeActivity, movies, costs)
+b = Activity(boxOfficeActivity, movies)
 c = Activity(concessionsActivity, menu)
 tc = Activity(ticketCheckerActivity)
 m = Activity(movieActivity)

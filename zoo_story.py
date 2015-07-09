@@ -3,7 +3,7 @@ from story_node import StoryNode
 from player import Player
 from activity import Activity
 from zoo_acts import *
-
+import random
 from text_to_speech import *
 
 #nodes
@@ -17,15 +17,23 @@ penguins = StoryNode("penguins")
 otters = StoryNode("otters")
 pandas = StoryNode("pandas")
 
+exhibits = [monkeys, elephants, lions, tigers, penguins, otters, pandas]
+current_exhibits = []
+
+#pick one of the exhibits
+for x in range(4):
+    rand_num = random.randint(0, len(exhibits)-1)
+    current_exhibits.append(exhibits[rand_num])
+    exhibits.remove(exhibits[rand_num])
+
+
 #add children
-entrance.addChild(parking_lot).addChild(monkeys).addChild(elephants)
-monkeys.addChild(elephants).addChild(lions).addChild(penguins).addChild(parking_lot)
-elephants.addChild(monkeys).addChild(lions).addChild(tigers).addChild(parking_lot)
-lions.addChild(monkeys).addChild(elephants).addChild(penguins).addChild(tigers).addChild(parking_lot)
-penguins.addChild(lions).addChild(monkeys).addChild(otters).addChild(parking_lot)
-tigers.addChild(elephants).addChild(lions).addChild(otters).addChild(parking_lot)
-otters.addChild(tigers).addChild(penguins).addChild(pandas).addChild(parking_lot)
-pandas.addChild(otters).addChild(parking_lot)
+entrance.addChild(current_exhibits[0]).addChild(current_exhibits[1]).addChild(current_exhibits[2]).addChild(current_exhibits[3]).addChild(parking_lot)
+current_exhibits[0].addChild(current_exhibits[1]).addChild(current_exhibits[2]).addChild(current_exhibits[3]).addChild(parking_lot)
+current_exhibits[1].addChild(current_exhibits[0]).addChild(current_exhibits[2]).addChild(current_exhibits[3]).addChild(parking_lot)
+current_exhibits[2].addChild(current_exhibits[0]).addChild(current_exhibits[1]).addChild(current_exhibits[3]).addChild(parking_lot)
+current_exhibits[3].addChild(current_exhibits[0]).addChild(current_exhibits[1]).addChild(current_exhibits[2]).addChild(parking_lot)
+
 
 #set activities
 

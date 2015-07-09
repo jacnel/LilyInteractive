@@ -10,7 +10,7 @@ def voice_input():
     try:
         return "" + r.recognize(audio)   # recognize speech using Google Speech Recognition
     except LookupError:                            # speech is unintelligible
-        speak("Could not understand audio, please try again")
+        speak("Sorry, I didn't hear that. Please say it again.")
 
 def getInputString():
     s = voice_input()

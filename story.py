@@ -4,8 +4,9 @@ from player import Player
 #import time
 #lib = ctypes.CDLL('FakeInputWin')
 from speech_recog import *
-
 from text_to_speech import *
+from Tkinter import *
+from PIL import Image, ImageTk
 
 """This class represents a story which is built from StoryNodes
 and a Player. Given a list of nodes, with the first being the starting node
@@ -19,6 +20,7 @@ class Story(object):
     def __init__(self, a_player, the_nodes):
         self.player = a_player
         self.nodes = the_nodes
+        #self.root = Tk()
 	# returns child node given by players response, s, if s is a child of the current node
 	# otherwise the current node is returned because s is not a valid choice
     def getNextNode(self, current, s):
@@ -77,6 +79,5 @@ class Story(object):
     def printChildren(self, current):
         for index,child in enumerate(current.children):
             speak(child.name)
-
 
 
