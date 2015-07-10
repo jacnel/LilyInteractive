@@ -21,7 +21,6 @@ class Player:
         self.completed.append(current.name)
 
     def setName(self):
-        return "Elise"
         yes = "no"
         while yes.lower() == "no":       
             speak("What is your name?")

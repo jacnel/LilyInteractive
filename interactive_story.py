@@ -11,7 +11,7 @@ import movie_story
 import zoo_story
 import pet_story
 import threading
-import run_gif2
+import avatar_player
 import time
 
 story_dict = {}
@@ -34,15 +34,17 @@ def getStory():
 
    
 def runStory():
-    t = threading.Thread(target = run_gif2.run_avatar)
-    t.start()
-    time.sleep(2)
-    #create story from nodes and player 
-    story_line = getStory()
-    player = Player(story_line)
-    story = Story(player, story_line) 
-    #run through the story
-    story.walk(player)
+	t = threading.Thread(target = avatar_player.run_avatar)
+	t.daemon = True
+	t.start()
+	time.sleep(2)
+	#create story from nodes and player 
+	story_line = getStory()
+	player = Player(story_line)
+	story = Story(player, story_line) 
+	#run through the story
+	story.walk(player)
+	
 
 runStory()
 

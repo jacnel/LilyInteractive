@@ -30,15 +30,13 @@ def entranceAct(player):
 def parking_lotAct(player):
     speak("You've reached the parking lot.")
     x = random.random()
-    if x > 0.8:
-        speak("Oh no! Some monkeys escaped.")
-        speak("They have gotten into your car!")
-        runGif("ZooGifs/monkey_steals_wheel_cover.gif")
-        speak("Let's get out of here. The End.")
-        return "quit"
-    speak("Time to go home.")
+    if x > 0.75:
+		speak("Oh no! Some monkeys escaped.")
+		speak("They have gotten into your car!")
+		runGif("ZooGifs/monkey_steals_wheel_cover.gif")
+		speak("Those thieves got away!")
     speak("We get new exhibits often, so come back soon to see something new.")
-    speak("The End.")
+    speak("It's time to go home now. The End.")
     return "quit"
 
 def monkeyAct(player):
