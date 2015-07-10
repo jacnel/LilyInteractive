@@ -155,15 +155,26 @@ def done_act(player):
     return "quit"
 
 def get_next(player, current, s):
-	if len(current.children) == 1:
-		return current.children[0].name
-	num_childs = len(current.children)
-	x = random.randint(0,num_childs-2)
-	if s.lower() == 'goodbye':
-		return 'done'
-	while inList(player.completed, current.children[x]):
-		if not flag:
-			x = random.randint(0,num_childs-2)
-		else:
-			return "done"
-	return current.children[x].name
+    if s.lower() == 'goodbye':
+        return 'done'
+    if len(current.children) == 2:
+        return current.children[0].name
+    if check_completed(player):
+        return "done"
+    num_childs = len(current.children)
+    x = random.randint(0,num_childs-2)
+    while inList(player.completed, current.children[x]):
+        if not flag:
+            x = random.randint(0,num_childs-2)
+        else:
+            return "done"
+    return current.children[x].name
+
+def check_completed(player):
+    count = 0
+    for item in player.completed:
+        if player.completed[item] == True:
+            count += 1
+    if count >= 10:
+        return True
+    return False
