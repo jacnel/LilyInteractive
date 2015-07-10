@@ -62,7 +62,7 @@ class Story(object):
         newCurrent = self.getNextNode(current, s)
         while (not newCurrent == None) and (newCurrent == current or (not self.prereqsValid(player, newCurrent))):
             if newCurrent == current:
-                speak("please choose a valid option")
+                speak("Please choose a valid option:")
                 for c in current.children:
                     speak(c.name)
             s = getInputString()

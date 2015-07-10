@@ -20,7 +20,7 @@ def entranceAct(player):
         return "quit"
     speak("We have a bunch of great exhibits for you today.")
     speak("Say the name of the animal you want to see to go there.")
-    speak("Say leave at any time to leave the zoo.")
+    speak("Say done at any time to leave the zoo.")
     speak("Have a fun time!")
     speak("Where should we start?")
     for x in player.location.children:

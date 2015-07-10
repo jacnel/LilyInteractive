@@ -26,11 +26,12 @@ import math
 #lib = ctypes.CDLL('FakeInputWin')
 
 def speak(string):
-		engine.say(string)
-		click(100,100)
-		engine.runAndWait()
-		click(100,100)
-		print string
+        engine.say(string)
+        click(100,100)
+        engine.runAndWait()
+        click(100,100)
+        print string
+
 
 def click(x,y):
         win32api.SetCursorPos((x,y))

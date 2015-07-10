@@ -44,7 +44,6 @@ def runStory():
 	story = Story(player, story_line) 
 	#run through the story
 	story.walk(player)
-	
 
 runStory()
 
