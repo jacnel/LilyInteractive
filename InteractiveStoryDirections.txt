@@ -2,9 +2,12 @@ Required Modules:
 ---------------------------------
 pyttsx [https://pypi.python.org/pypi/pyttsx] (if pip is installed, use ‘python -m pip install pyttsx’)
 
-SpeechRecognition 1.4.0 [https://pypi.python.org/pypi/SpeechRecognition/] (place directory ‘speech_recognition’ [nested under ‘speech_recognition 1.4.0’] in Interactive Story directory)
+SpeechRecognition 1.4.0 [https://pypi.python.org/pypi/SpeechRecognition/] (place directory ‘speech_recognition’ [nested 
+under ‘speech_recognition 1.4.0’] in Interactive Story directory)
 
-pywin32 [http://sourceforge.net/projects/pywin32/files/pywin32/] at this time most recent build is 219; elect the 32bit version of the software (if error ‘win32api module not found’ try placing all win32*.pyd files in same directory as python.exe)
+pywin32 [http://sourceforge.net/projects/pywin32/files/pywin32/] at this time most recent build is 219; elect the 
+32bit version of the software (if error ‘win32api module not found’ try placing all win32*.pyd files in same directory 
+as python.exe)
 
 pyaudio [https://people.csail.mit.edu/hubert/pyaudio/]
 
