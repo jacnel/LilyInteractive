@@ -11,9 +11,9 @@ In yourstory_story.py:
      Add connections between nodes by creating parent-child relationships using the .addChild() method.
      
      If some nodes have prerequisites, append the name of the node that must be completed beforehand to the child’s 
-     prereqs list. This could either be a string or the StoryNode object. The StoryNode obejct is automatically set to True 
-     in the completed dictionary, but if you want to use a string (to pass data of some sort), you will have to manually
-     append that to the completed dictionary.
+     prereqs list. This could either be an arbitrary string or the name of an existing node. Each StoryNode's name is
+     automatically set to True in the completed dictionary after you leave the node, but if you want to use a string 
+     (to pass data of some sort instead of True/False), you will have to manually append that to the completed dictionary.
      
      Once you have created your activities in theater_acts.py (or another file), instantiate them as an Activity object 
      along with any other parameters. Then, match the activity to the correct node using the .setActivity() method.
