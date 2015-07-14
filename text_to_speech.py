@@ -14,7 +14,7 @@ volume = engine.getProperty('volume')
 #set the speaking volume
 engine.setProperty('volume', volume + .99)
 #set the speaking rate
-engine.setProperty('rate', rate - 70)
+#engine.setProperty('rate', rate - 70)
 #set the voice to one of three
 engine.setProperty('voice', voices[1].id)
 

@@ -5,8 +5,8 @@ from player import Player
 #lib = ctypes.CDLL('FakeInputWin')
 from speech_recog import *
 from text_to_speech import *
-from Tkinter import *
-from PIL import Image, ImageTk
+#from Tkinter import *
+#from PIL import Image, ImageTk
 
 """This class represents a story which is built from StoryNodes
 and a Player. Given a list of nodes, with the first being the starting node
@@ -46,17 +46,18 @@ class Story(object):
 		
 		# automated greeting for node 
 		# TODO develop better automated 'welcome'
-        '''speak("Welcome to the " + current.name)'''
+        #speak("Welcome to the " + current.name)
 		
 		# a node can have multiple activities associated with it
 		# each activity must be completed before moving to next node
-	s = current.activity.doActivity(player)
+        s = current.activity.doActivity(player)
+	
 		
 		# prompts user to choose next node out of options
-        '''speak("You are at the " + current.name + ". Where would you like to go now?")
-        self.printChildren(current)'''
+        #speak("You are at the " + current.name + ". Where would you like to go now?")
+        #self.printChildren(current)
 	# s is users spoken response
-	if s == None:
+        if s == None:
             s = getInputString()
 	# check if a valid choice has been made or if getNextNode has returned the current working node
         newCurrent = self.getNextNode(current, s)

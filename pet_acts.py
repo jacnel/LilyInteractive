@@ -132,6 +132,15 @@ def tricks_act(player):
     s = getInputString()
     return get_next(player, current, s)
 
+def tail_act(player):
+    current = player.location
+    if pet.tail:
+        speak("Is " + pet_name + "'s tail long or short?")
+        s = getInputString()
+    else:
+        player.completed[current.name] = False
+    return get_next(player, current, s)
+
 def pet_act(player):
     current = player.location
     speak(current.description)

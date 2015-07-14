@@ -5,11 +5,13 @@ from activity import Activity
 from theater_acts import *
 from zoo_acts import *
 from pet_acts import *
+from _vault_acts import *
 from text_to_speech import *
 from speech_recog import *
 import movie_story
 import zoo_story
 import pet_story
+import _vault_story
 import threading
 import avatar_player
 import time
@@ -18,8 +20,10 @@ story_dict = {}
 story_dict["Movie"] = movie_story.movie_story_line
 story_dict["Zoo"] = zoo_story.zoo_story_line
 story_dict["Pets"] = pet_story.pet_story_line
+story_dict["Vault"] = _vault_story.vault_story_line
 
 def getStory():
+    return story_dict["Vault"]
     speak("Which story would you like to play?")
     for story in story_dict.keys():
         speak(story)

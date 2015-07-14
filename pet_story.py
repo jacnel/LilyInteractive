@@ -14,27 +14,23 @@ have_pets = StoryNode("have pets","Do you have any pets?")
 #basic info
 kinds_of_pets = StoryNode("kinds of pets", "Tell me about a pet of yours. What kind of pet is it?")
 pet_name = StoryNode("name")
-#physical char.
 color = StoryNode("color")
 big_or_small  = StoryNode("size")
 pet_breed = StoryNode("breed")
 age  = StoryNode("age")
-#other char.
 sound = StoryNode("sound")
 mess = StoryNode("mess")
 sleep = StoryNode("sleep")
-#food
 food = StoryNode("food")
 treat = StoryNode("treat")
 favorite_toy = StoryNode("toy")
-#social
 siblings = StoryNode("siblings")
 other_pets = StoryNode("other pets")
 temperment = StoryNode("temperment")
 vet = StoryNode("vet")
-#doing things
 walk = StoryNode("walks")
 tricks = StoryNode("tricks")
+tail = StoryNode("tail")
 
 done = StoryNode("done", "I loved talking to you. But I have to go. Goodbye!")
 
@@ -44,24 +40,25 @@ have_pets.addChild(kinds_of_pets).addChild(done)
 #.addChild(dream_pets)
 kinds_of_pets.addChild(pet_name).addChild(done)
 
-pet_name.addChild(pet_breed).addChild(color).addChild(big_or_small).addChild(age).addChild(sound).addChild(mess).addChild(sleep).addChild(food).addChild(treat).addChild(favorite_toy).addChild(siblings).addChild(other_pets).addChild(temperment).addChild(vet).addChild(walk).addChild(tricks).addChild(done)
-pet_breed.addChild(color).addChild(big_or_small).addChild(age).addChild(sound).addChild(mess).addChild(sleep).addChild(food).addChild(treat).addChild(favorite_toy).addChild(siblings).addChild(other_pets).addChild(temperment).addChild(vet).addChild(walk).addChild(tricks).addChild(done)
-age.addChild(pet_breed).addChild(color).addChild(big_or_small).addChild(sound).addChild(mess).addChild(sleep).addChild(food).addChild(treat).addChild(favorite_toy).addChild(siblings).addChild(other_pets).addChild(temperment).addChild(vet).addChild(walk).addChild(tricks).addChild(done)
-color.addChild(pet_breed).addChild(big_or_small).addChild(age).addChild(sound).addChild(mess).addChild(sleep).addChild(food).addChild(treat).addChild(favorite_toy).addChild(siblings).addChild(other_pets).addChild(temperment).addChild(vet).addChild(walk).addChild(tricks).addChild(done)
-sound.addChild(pet_breed).addChild(color).addChild(big_or_small).addChild(age).addChild(mess).addChild(sleep).addChild(food).addChild(treat).addChild(favorite_toy).addChild(siblings).addChild(other_pets).addChild(temperment).addChild(vet).addChild(walk).addChild(tricks).addChild(done)
-mess.addChild(pet_breed).addChild(color).addChild(big_or_small).addChild(age).addChild(sound).addChild(sleep).addChild(food).addChild(treat).addChild(favorite_toy).addChild(siblings).addChild(other_pets).addChild(temperment).addChild(vet).addChild(walk).addChild(tricks).addChild(done)
-food.addChild(pet_breed).addChild(color).addChild(big_or_small).addChild(age).addChild(sound).addChild(mess).addChild(sleep).addChild(treat).addChild(favorite_toy).addChild(siblings).addChild(other_pets).addChild(temperment).addChild(vet).addChild(walk).addChild(tricks).addChild(done)
-siblings.addChild(pet_breed).addChild(color).addChild(big_or_small).addChild(age).addChild(sound).addChild(mess).addChild(sleep).addChild(food).addChild(treat).addChild(favorite_toy).addChild(other_pets).addChild(temperment).addChild(vet).addChild(walk).addChild(tricks).addChild(done)
-other_pets.addChild(pet_breed).addChild(color).addChild(big_or_small).addChild(age).addChild(sound).addChild(mess).addChild(sleep).addChild(food).addChild(treat).addChild(favorite_toy).addChild(siblings).addChild(temperment).addChild(vet).addChild(walk).addChild(tricks).addChild(done)
-temperment.addChild(pet_breed).addChild(color).addChild(big_or_small).addChild(age).addChild(sound).addChild(mess).addChild(sleep).addChild(food).addChild(treat).addChild(favorite_toy).addChild(siblings).addChild(other_pets).addChild(vet).addChild(walk).addChild(tricks).addChild(done)
-walk.addChild(pet_breed).addChild(color).addChild(big_or_small).addChild(age).addChild(sound).addChild(mess).addChild(sleep).addChild(food).addChild(treat).addChild(favorite_toy).addChild(siblings).addChild(other_pets).addChild(temperment).addChild(vet).addChild(tricks).addChild(done)
+pet_name.addChild(pet_breed).addChild(color).addChild(big_or_small).addChild(age).addChild(sound).addChild(mess).addChild(sleep).addChild(food).addChild(treat).addChild(favorite_toy).addChild(siblings).addChild(other_pets).addChild(temperment).addChild(vet).addChild(walk).addChild(tricks).addChild(tail).addChild(done)
+pet_breed.addChild(color).addChild(big_or_small).addChild(age).addChild(sound).addChild(mess).addChild(sleep).addChild(food).addChild(treat).addChild(favorite_toy).addChild(siblings).addChild(other_pets).addChild(temperment).addChild(vet).addChild(walk).addChild(tricks).addChild(tail).addChild(done)
+age.addChild(pet_breed).addChild(color).addChild(big_or_small).addChild(sound).addChild(mess).addChild(sleep).addChild(food).addChild(treat).addChild(favorite_toy).addChild(siblings).addChild(other_pets).addChild(temperment).addChild(vet).addChild(walk).addChild(tricks).addChild(tail).addChild(done)
+color.addChild(pet_breed).addChild(big_or_small).addChild(age).addChild(sound).addChild(mess).addChild(sleep).addChild(food).addChild(treat).addChild(favorite_toy).addChild(siblings).addChild(other_pets).addChild(temperment).addChild(vet).addChild(walk).addChild(tricks).addChild(tail).addChild(done)
+sound.addChild(pet_breed).addChild(color).addChild(big_or_small).addChild(age).addChild(mess).addChild(sleep).addChild(food).addChild(treat).addChild(favorite_toy).addChild(siblings).addChild(other_pets).addChild(temperment).addChild(vet).addChild(walk).addChild(tricks).addChild(tail).addChild(done)
+mess.addChild(pet_breed).addChild(color).addChild(big_or_small).addChild(age).addChild(sound).addChild(sleep).addChild(food).addChild(treat).addChild(favorite_toy).addChild(siblings).addChild(other_pets).addChild(temperment).addChild(vet).addChild(walk).addChild(tricks).addChild(tail).addChild(done)
+food.addChild(pet_breed).addChild(color).addChild(big_or_small).addChild(age).addChild(sound).addChild(mess).addChild(sleep).addChild(treat).addChild(favorite_toy).addChild(siblings).addChild(other_pets).addChild(temperment).addChild(vet).addChild(walk).addChild(tricks).addChild(tail).addChild(done)
+siblings.addChild(pet_breed).addChild(color).addChild(big_or_small).addChild(age).addChild(sound).addChild(mess).addChild(sleep).addChild(food).addChild(treat).addChild(favorite_toy).addChild(other_pets).addChild(temperment).addChild(vet).addChild(walk).addChild(tricks).addChild(tail).addChild(done)
+other_pets.addChild(pet_breed).addChild(color).addChild(big_or_small).addChild(age).addChild(sound).addChild(mess).addChild(sleep).addChild(food).addChild(treat).addChild(favorite_toy).addChild(siblings).addChild(temperment).addChild(vet).addChild(walk).addChild(tricks).addChild(tail).addChild(done)
+temperment.addChild(pet_breed).addChild(color).addChild(big_or_small).addChild(age).addChild(sound).addChild(mess).addChild(sleep).addChild(food).addChild(treat).addChild(favorite_toy).addChild(siblings).addChild(other_pets).addChild(vet).addChild(walk).addChild(tricks).addChild(tail).addChild(done)
+walk.addChild(pet_breed).addChild(color).addChild(big_or_small).addChild(age).addChild(sound).addChild(mess).addChild(sleep).addChild(food).addChild(treat).addChild(favorite_toy).addChild(siblings).addChild(other_pets).addChild(temperment).addChild(vet).addChild(tricks).addChild(tail).addChild(done)
 #dream_pet.addChild(kinds_of_pets).addChild(color).addChild(sound).addChild(food).addChild(siblings).addChild(walk).addChild(done)
-favorite_toy.addChild(pet_breed).addChild(color).addChild(big_or_small).addChild(age).addChild(sound).addChild(mess).addChild(sleep).addChild(food).addChild(treat).addChild(siblings).addChild(other_pets).addChild(temperment).addChild(vet).addChild(walk).addChild(tricks).addChild(done)
-big_or_small.addChild(pet_breed).addChild(color).addChild(age).addChild(sound).addChild(mess).addChild(sleep).addChild(food).addChild(treat).addChild(favorite_toy).addChild(siblings).addChild(other_pets).addChild(temperment).addChild(vet).addChild(walk).addChild(tricks).addChild(done)
-sleep.addChild(pet_breed).addChild(color).addChild(big_or_small).addChild(age).addChild(sound).addChild(mess).addChild(food).addChild(treat).addChild(favorite_toy).addChild(siblings).addChild(other_pets).addChild(temperment).addChild(vet).addChild(walk).addChild(tricks).addChild(done)
-treat.addChild(pet_breed).addChild(color).addChild(big_or_small).addChild(age).addChild(sound).addChild(mess).addChild(sleep).addChild(food).addChild(favorite_toy).addChild(siblings).addChild(other_pets).addChild(temperment).addChild(vet).addChild(walk).addChild(tricks).addChild(done)
-vet.addChild(pet_breed).addChild(color).addChild(big_or_small).addChild(age).addChild(sound).addChild(mess).addChild(sleep).addChild(food).addChild(treat).addChild(favorite_toy).addChild(siblings).addChild(other_pets).addChild(temperment).addChild(walk).addChild(tricks).addChild(done)
-tricks.addChild(pet_breed).addChild(color).addChild(big_or_small).addChild(age).addChild(sound).addChild(mess).addChild(sleep).addChild(food).addChild(treat).addChild(favorite_toy).addChild(siblings).addChild(other_pets).addChild(temperment).addChild(vet).addChild(walk).addChild(done)
+favorite_toy.addChild(pet_breed).addChild(color).addChild(big_or_small).addChild(age).addChild(sound).addChild(mess).addChild(sleep).addChild(food).addChild(treat).addChild(siblings).addChild(other_pets).addChild(temperment).addChild(vet).addChild(walk).addChild(tricks).addChild(tail).addChild(done)
+big_or_small.addChild(pet_breed).addChild(color).addChild(age).addChild(sound).addChild(mess).addChild(sleep).addChild(food).addChild(treat).addChild(favorite_toy).addChild(siblings).addChild(other_pets).addChild(temperment).addChild(vet).addChild(walk).addChild(tricks).addChild(tail).addChild(done)
+sleep.addChild(pet_breed).addChild(color).addChild(big_or_small).addChild(age).addChild(sound).addChild(mess).addChild(food).addChild(treat).addChild(favorite_toy).addChild(siblings).addChild(other_pets).addChild(temperment).addChild(vet).addChild(walk).addChild(tricks).addChild(tail).addChild(done)
+treat.addChild(pet_breed).addChild(color).addChild(big_or_small).addChild(age).addChild(sound).addChild(mess).addChild(sleep).addChild(food).addChild(favorite_toy).addChild(siblings).addChild(other_pets).addChild(temperment).addChild(vet).addChild(walk).addChild(tricks).addChild(tail).addChild(done)
+vet.addChild(pet_breed).addChild(color).addChild(big_or_small).addChild(age).addChild(sound).addChild(mess).addChild(sleep).addChild(food).addChild(treat).addChild(favorite_toy).addChild(siblings).addChild(other_pets).addChild(temperment).addChild(walk).addChild(tricks).addChild(tail).addChild(done)
+tricks.addChild(pet_breed).addChild(color).addChild(big_or_small).addChild(age).addChild(sound).addChild(mess).addChild(sleep).addChild(food).addChild(treat).addChild(favorite_toy).addChild(siblings).addChild(other_pets).addChild(temperment).addChild(vet).addChild(walk).addChild(tail).addChild(done)
+tail.addChild(pet_breed).addChild(color).addChild(big_or_small).addChild(age).addChild(sound).addChild(mess).addChild(sleep).addChild(food).addChild(treat).addChild(favorite_toy).addChild(siblings).addChild(other_pets).addChild(temperment).addChild(vet).addChild(walk).addChild(tricks).addChild(done)
 
 """ACTIVITIES"""
 have_pets.setActivity(Activity(have_pets_act))
@@ -84,10 +81,11 @@ temperment.setActivity(Activity(temperment_act))
 vet.setActivity(Activity(vet_act))
 walk.setActivity(Activity(walk_act))
 tricks.setActivity(Activity(tricks_act))
+tail.setActivity(Activity(tail_act))
 done.setActivity(Activity(done_act))
 
 
 pet_story_line = [have_pets, kinds_of_pets, pet_name, pet_breed, age, favorite_toy,
                         color, big_or_small, sound, mess, sleep, food, treat,
-                        siblings, other_pets, temperment, vet, walk, tricks]
+                        siblings, other_pets, temperment, vet, walk, tricks, tail]
 
