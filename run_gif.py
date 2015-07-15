@@ -31,13 +31,12 @@ class GifLabel(Label):
 ##        first = seq[0].convert('RGBA')
 ##        frames = [ImageTk.PhotoImage(first)]
 ##
-##
 ##        temp = seq[0]
 ##        for image in seq[1:]:
 ##            temp.paste(image)
 ##            frame = temp.convert('RGBA')
 ##            frames.append(ImageTk.PhotoImage(frame))
-        #resize image
+        #scale image as large as possible within screen size limits
         im_w, im_h = im.size
         screen_w = master.winfo_screenwidth()
         screen_h = master.winfo_screenheight()

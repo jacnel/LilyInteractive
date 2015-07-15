@@ -100,7 +100,7 @@ def inList(lst, s):
 
 
 def fullscreen(length):
-    time.sleep(5)
+    time.sleep(6)
     webbrowser.close()
     win32com.client.Dispatch("WScript.Shell").SendKeys('f')
     time.sleep(length)

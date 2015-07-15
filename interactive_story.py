@@ -37,6 +37,7 @@ def getStory():
 
    
 def runStory():
+        #play avatar
 	t = threading.Thread(target = avatar_player.run_avatar)
 	t.daemon = True
 	t.start()

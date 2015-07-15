@@ -51,8 +51,8 @@ while re.Listening == True: #while listening
                     re.stopListening(engine)
                vm.write(str(commands[index])+'\n')
                sys.stderr.write("Recognized Phrase "+str(recoged[index]) +"\n")
-               if index == 7: #index 7 initiates story 
-                   main.runStory()
+               if index == 7: #index 7 initiates interactive story 
+                   interactive_story.runStory()
                Lily = False
            else:
                 Lily = False

@@ -2,12 +2,7 @@ from player import Player
 from speech_recog import *
 from text_to_speech import *
 import random
-import pyglet
-from win32api import GetSystemMetrics
-import math
-import threading
 from run_gif import *
-#import time
 
 #activities must return None or the name of the next node or "quit"
 
@@ -31,10 +26,10 @@ def parking_lotAct(player):
     speak("You've reached the parking lot.")
     x = random.random()
     if x > 0.75:
-		speak("Oh no! Some monkeys escaped.")
-		speak("They have gotten into your car!")
-		runGif("ZooGifs/monkey_steals_wheel_cover.gif")
-		speak("Those thieves got away!")
+            speak("Oh no! Some monkeys escaped.")
+            speak("They have gotten into your car!")
+            runGif("ZooGifs/monkey_steals_wheel_cover.gif")
+            speak("Those thieves got away!")
     speak("We get new exhibits often, so come back soon to see something new.")
     speak("It's time to go home now. The End.")
     return "quit"

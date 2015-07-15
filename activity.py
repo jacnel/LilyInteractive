@@ -10,6 +10,7 @@ class Activity(object):
         self.args = args
 
     def doActivity(self, player):
+        #node is set to completed BEFORE the activity is executed
         player.completed[player.location.name] = True
         if len(self.args) == 0:
             return self.func(player)
