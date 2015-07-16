@@ -114,7 +114,7 @@ def pandaAct(player):
         speak(x.name)
     return None
 
-def get_target(s, targets, targets_syn):
+def get_target(s, targets, targets_syn):        #this method looks for a one word target in user's speech
     #check if user says exactly the node's name
     for t in targets:
         if s.lower() == t.lower():

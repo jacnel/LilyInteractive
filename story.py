@@ -5,6 +5,7 @@ from player import Player
 #lib = ctypes.CDLL('FakeInputWin')
 from speech_recog import *
 from text_to_speech import *
+from nltk.stem.snowball import SnowballStemmer
 
 """This class represents a story which is built from StoryNodes
 and a Player. Given a list of nodes, with the first being the starting node
@@ -12,6 +13,8 @@ in the story, it is able to walk between nodes. When a node is visited it
 is added as a string in the dictionary of the player. Additionally, any tokens
 that are prerequisites for later nodes are added. For example, a box office
 node, when visited, will add a 'ticket' to the completed dictionary in player"""
+
+stemmer = SnowballStemmer('english')
 
 class Story(object):
     # set up player and story
@@ -25,8 +28,11 @@ class Story(object):
         for child in current.children:
             if s.lower() == child.name.lower():
                 return child
-        
-        s = s.lower().split()#add nltk thing
+
+        #checks if user says node's name in a longer sentence (node's name can be multiple words)
+        stems = []                          #get root of every word to compare                    
+        for word in s.lower().split():
+            stems.append(stemmer.stem(word))
         
         if "quit" in s:
             return None
@@ -34,7 +40,7 @@ class Story(object):
         for p in current.possibles:     #for every child of current
             count = 0
             for el in p:                #for every word in current.child's name
-                if el in s:             #if the user said that word
+                if el in stems:         #if the user said that word
                     count += 1          #success, look for next word in name, if applicable
                                         #otherwise, check next child
             if count == len(p):         #if the user said every word in current.child's name
@@ -44,7 +50,7 @@ class Story(object):
     def prereqsValid(self, player, newCurrent):
         for prereq in newCurrent.prereqs:
             if not prereq in player.completed.keys() or player.completed[prereq] == False:
-                speak("you do not have your " + prereq + " yet! go somewhere else")
+                speak("You do not have your " + prereq + " yet! Choose somewhere else to go.")
                 return False
         return True
                 

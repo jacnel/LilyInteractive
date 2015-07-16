@@ -16,11 +16,17 @@ import threading
 import avatar_player
 import time
 
+#all story titles must be one word
+
 story_dict = {}
 story_dict["Movie"] = movie_story.movie_story_line
 story_dict["Zoo"] = zoo_story.zoo_story_line
-story_dict["Pets"] = pet_story.pet_story_line
+story_dict["Pet"] = pet_story.pet_story_line
 story_dict["Vault"] = _vault_story.vault_story_line
+
+targets_syn = []
+for name in story_dict.keys():
+    targets_syn.append(stemmer.stem(name))
 
 def getStory():
     speak("Which story would you like to play?")
@@ -28,11 +34,32 @@ def getStory():
         speak(story)
     while True:
         s = getInputString()
-        for story in story_dict.keys():
-            if s.lower() == story.lower():
-                return story_dict[story]
-        speak("Sorry, we don't have that story right now.")
-        speak("Please try another.")
+        story = get_target(s, story_dict.keys(), targets_syn)
+        while story == None:
+            speak("Sorry, we don't have that story right now.")
+            speak("Please try another.")
+            for story in story_dict.keys():
+                speak(story)
+            s = getInputString()
+            story = get_target(s, story_dict.keys(), targets_syn)
+        return story_dict[story]
+
+def get_target(s, targets, targets_syn):        #this method looks for a one word target in user's speech
+    #check if user says exactly the node's name
+    for t in targets:
+        if s.lower() == t.lower():
+            return t
+    
+    s = s.lower().split()
+    temp = []
+    for i in s:
+        temp.append(stemmer.stem(i))
+    s = temp
+    for word in s:
+        for t in targets_syn:
+            if word in t:
+                return targets[targets_syn.index(t)]
+    return None
 
    
 def runStory():

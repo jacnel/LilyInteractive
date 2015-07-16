@@ -4,6 +4,9 @@ from text_to_speech import *
 import webbrowser
 import win32com.client
 import time
+from nltk.stem.snowball import SnowballStemmer
+
+stemmer = SnowballStemmer('english')
 
 #activities must return None or the name of the next node or "quit"
 
@@ -29,7 +32,6 @@ def boxOfficeActivity(player, box_args):
         movieChoice = getInputString()
         movie_index = inList(box_args[0], movieChoice)
     player.completed["ticket"] = box_args[0][movie_index]
-    print box_args[0][movie_index]
     speak("Here's your ticket. Enjoy the show.")
     speak("Would you like to go to the concessions?")
     speak("Or would you like to go to the ticket checker?")
@@ -62,15 +64,15 @@ def concessionsActivity(player, menu):
     return None
 
 def ticketCheckerActivity(player):
-    speak("Hello, ticket please")
+    speak("Hello, ticket please.")
     if player.completed["ticket"].lower() == "inside out":
-        speak("Inside Out is in theater 3A, enjoy the show!")
+        speak("Inside Out is in theater 3 A, enjoy the show!")
     if player.completed["ticket"].lower() == "tomorrowland":
-        speak("Tomorrowland is in theater 1D, enjoy your movie!")
+        speak("Tomorrowland is in theater 1 D, enjoy your movie!")
     if player.completed["ticket"].lower() == "minions":
-        speak("Minions is in theater 3B, enjoy the show!")
+        speak("Minions is in theater 3 B, enjoy the show!")
     if player.completed["ticket"].lower() == "home":
-        speak("Home is in theater 1A, enjoy your movie!")
+        speak("Home is in theater 1 A, enjoy your movie!")
     speak("Say movie to sit down and watch.")
 
     return None
@@ -97,6 +99,7 @@ def movieActivity(player):
 
     return "quit"
 
+#checks if user says a target phrase in a longer sentence (phrase can be multiple words)
 def inList(lst, s):
     for x in lst:                   #if you say exactly phrase in list
         if s.lower() == x.lower():
@@ -104,10 +107,15 @@ def inList(lst, s):
     if "quit" in s.lower().split(): 
         return None
     s = s.lower().split()           #check if you said phrase inside a longer sentence
+    temp = []
+    for i in s:                     #get root word of user input
+        temp.append(stemmer.stem(i))
+    s = temp
     for l in lst:                   #for every element in the (movie, food)
         count = 0
         words = l.lower().split()
         for w in words:             #for every word in l(movie title, food name)
+            w = stemmer.stem(w)     #compare root words, to increase generaltiy
             if w in s:              #if that word is in what you said
                 count += 1
         if count == len(words):      #if you said every word in l
@@ -116,8 +124,7 @@ def inList(lst, s):
         
 
 def fullscreen(length):
-    time.sleep(6)
-    webbrowser.close()
+    time.sleep(5)
     win32com.client.Dispatch("WScript.Shell").SendKeys('f')
     time.sleep(length)
     win32com.client.Dispatch("WScript.Shell").SendKeys('f')

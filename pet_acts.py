@@ -4,14 +4,24 @@ from text_to_speech import *
 from story_node import StoryNode
 import random
 import animal
-
+from nltk.stem.snowball import SnowballStemmer
 #acts must pass player as a parameter
+
+stemmer = SnowballStemmer('english')
 
 flag = True
 pet_name = ""
 pet = None
 pet_types = ['dog', 'cat', 'fish', 'bird', 'lizard']
 pet_syns = [['dog', 'doggy', 'puppy', 'pooch', 'pup', 'canine'], ['cat', 'kitten', 'kitty', 'feline'], ['fish', 'fishes', 'fishies'], ['bird', 'fowl', 'birdie', 'chick', 'fledgling', 'nestling'], ['lizard']]
+#turn pet_syns into their root words
+temp = []
+for i in pet_syns: 
+    temp2 = []
+    for j in i:
+        temp2.append(stemmer.stem(j))
+    temp.append(temp2)
+pet_syns = temp
 yes = ['yes']
 yes_syns = [['yes', 'yup', 'yeah', 'yea', 'indeed', 'sure']]
 
@@ -138,6 +148,7 @@ def tricks_act(player):
 
 def tail_act(player):
     current = player.location
+    s = None
     if pet.tail:
         speak("Is " + pet_name + "'s tail long or short?")
         s = getInputString()
@@ -151,7 +162,7 @@ def pet_act(player):
     s = getInputString()
     return get_next(player, current, s)
 
-def inList(dct, s):
+def check_completed(dct, s):
     global flag
     flag = True
     inLst = False
@@ -172,31 +183,35 @@ def get_next(player, current, s):
         return 'done'
     if len(current.children) == 2:
         return current.children[0].name
-    if check_completed(player):
+    if convo_over(player):
         return "done"
     num_childs = len(current.children)
     x = random.randint(0,num_childs-2)
-    while inList(player.completed, current.children[x]):
+    while check_completed(player.completed, current.children[x]):
         if not flag:
             x = random.randint(0,num_childs-2)
         else:
             return "done"
     return current.children[x].name
 
-def get_target(s, targets, targets_syn):
+def get_target(s, targets, targets_syn):        #this method looks for a one word target in user's speech
     #check if user says exactly the node's name
     for t in targets:
         if s.lower() == t.lower():
             return t
     
     s = s.lower().split()
+    temp = []
+    for i in s:
+        temp.append(stemmer.stem(i))
+    s = temp
     for word in s:
         for t in targets_syn:
             if word in t:
                 return targets[targets_syn.index(t)]
     return None
 
-def check_completed(player):
+def convo_over(player):
     count = 0
     for item in player.completed:
         if player.completed[item] == True:

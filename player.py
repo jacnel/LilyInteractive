@@ -21,17 +21,7 @@ class Player:
     def addCompleted(self, current):
         self.completed.append(current.name)
 
-    def setName(self):
-        return "Elise"
-        do:
-            speak("What is your name?")
-            s = getInputString()
-            speak("Is your name " + s + "?")
-            yes = getInputString()
-        while (get_target(yes, ['yes'], yes_syns) != 'yes')
-        return s
-
-    def get_target(self, s, targets, targets_syn):
+    def get_target(self, s, targets, targets_syn):  #this method looks for a one word target in user's speech
         #check if user says exactly the node's name
         for t in targets:
             if s.lower() == t.lower():
@@ -43,3 +33,14 @@ class Player:
                 if word in t:
                     return targets[targets_syn.index(t)]
         return None
+
+    def setName(self):
+        yes = 'no'
+        while self.get_target(yes, ['yes'], yes_syns) != 'yes':
+            speak("What is your name?")
+            s = getInputString()
+            speak("Is your name " + s + "?")
+            yes = getInputString()
+        return s
+
+    

@@ -3,6 +3,9 @@ It will have fields for a name, description, necessary conditions to be
 available, and child story events. Additionally, activities are attributed to
 each node and allow for more interactivity between user and story'''
 from activity import Activity
+from nltk.stem.snowball import SnowballStemmer
+
+stemmer = SnowballStemmer('english')
 
 class StoryNode:
     # only necessary parameters are name and description
@@ -17,7 +20,7 @@ class StoryNode:
         #a list to hold other words the user can say to represent the node
         self.syns = []
         for s in self.name.split():
-            self.syns.append(s)
+            self.syns.append(stemmer.stem(s))       #use root of word for generality
         # add children StoryNodes to this node, possible edges in graph
         self.children = []
         self.possibles = []
