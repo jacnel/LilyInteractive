@@ -179,7 +179,8 @@ def done_act(player):
     return "quit"
 
 def get_next(player, current, s):
-    if 'goodbye' in s.lower().split():
+    split = s.lower().split()
+    if 'goodbye' in split or 'done' in split or 'quit' in split:
         return 'done'
     if len(current.children) == 2:
         return current.children[0].name

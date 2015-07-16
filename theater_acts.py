@@ -128,5 +128,5 @@ def fullscreen(length):
     win32com.client.Dispatch("WScript.Shell").SendKeys('f')
     time.sleep(length)
     win32com.client.Dispatch("WScript.Shell").SendKeys('f')
-
-        
+    win32com.client.Dispatch("WScript.Shell").SendKeys('%{F4}',0)
+       
