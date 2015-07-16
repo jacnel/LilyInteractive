@@ -10,13 +10,17 @@ import animal
 flag = True
 pet_name = ""
 pet = None
+pet_types = ['dog', 'cat', 'fish', 'bird', 'lizard']
+pet_syns = [['dog', 'doggy', 'puppy', 'pooch', 'pup', 'canine'], ['cat', 'kitten', 'kitty', 'feline'], ['fish', 'fishes', 'fishies'], ['bird', 'fowl', 'birdie', 'chick', 'fledgling', 'nestling'], ['lizard']]
+yes = ['yes']
+yes_syns = [['yes', 'yup', 'yeah', 'yea', 'indeed', 'sure']]
 
 def have_pets_act(player):
     current = player.location
     speak("Hi " + player.name)
     speak (current.description)
     s = getInputString()
-    if s.lower() == "no":
+    if get_target(s, yes, yes_syns) != 'yes': 
         return "done"
     return get_next(player, current, s)
 
@@ -25,7 +29,7 @@ def kinds_act(player):
     current = player.location
     speak(current.description)
     s = getInputString()
-    pet = animal.Animal(s.split())
+    pet = animal.Animal(get_target(s, pet_types, pet_syns))
     return get_next(player, current, s)
 
 def name_act(player):
@@ -164,7 +168,7 @@ def done_act(player):
     return "quit"
 
 def get_next(player, current, s):
-    if s.lower() == 'goodbye':
+    if 'goodbye' in s.lower().split():
         return 'done'
     if len(current.children) == 2:
         return current.children[0].name
@@ -178,6 +182,19 @@ def get_next(player, current, s):
         else:
             return "done"
     return current.children[x].name
+
+def get_target(s, targets, targets_syn):
+    #check if user says exactly the node's name
+    for t in targets:
+        if s.lower() == t.lower():
+            return t
+    
+    s = s.lower().split()
+    for word in s:
+        for t in targets_syn:
+            if word in t:
+                return targets[targets_syn.index(t)]
+    return None
 
 def check_completed(player):
     count = 0

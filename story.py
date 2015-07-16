@@ -21,14 +21,26 @@ class Story(object):
     # returns child node given by players response, s, if s is a child of the current node
     # otherwise the current node is returned because s is not a valid choice
     def getNextNode(self, current, s):
-        for c in current.children:
-            if s.lower() == c.name.lower():
-                return c
-        if s.lower() == "quit":
+        #check if user says exactly the node's name
+        for child in current.children:
+            if s.lower() == child.name.lower():
+                return child
+        
+        s = s.lower().split()#add nltk thing
+        
+        if "quit" in s:
             return None
-        else:
-            return current
 
+        for p in current.possibles:     #for every child of current
+            count = 0
+            for el in p:                #for every word in current.child's name
+                if el in s:             #if the user said that word
+                    count += 1          #success, look for next word in name, if applicable
+                                        #otherwise, check next child
+            if count == len(p):         #if the user said every word in current.child's name
+                return current.children[current.possibles.index(p)]
+        return current
+        
     def prereqsValid(self, player, newCurrent):
         for prereq in newCurrent.prereqs:
             if not prereq in player.completed.keys() or player.completed[prereq] == False:
@@ -61,7 +73,7 @@ class Story(object):
         newCurrent = self.getNextNode(current, s)
         while (not newCurrent == None) and (newCurrent == current or (not self.prereqsValid(player, newCurrent))):
             if newCurrent == current:
-                speak("Please choose a valid option:")
+                speak("Sorry, that confused me. Please say one of the following:")
                 for c in current.children:
                     speak(c.name)
             s = getInputString()
@@ -69,7 +81,7 @@ class Story(object):
         #once a valid choice is made set current node then return it
 
         return newCurrent
-
+    
             
     def walk(self, player):                         # function to 'play' the story
         while player.location != None:              # while there are still nodes to visit, visit them using nextNode

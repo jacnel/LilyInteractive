@@ -21,12 +21,15 @@ def boxOfficeActivity(player, box_args):
     for i in range(len(box_args[0])):
        speak(str(box_args[0][i]))
     movieChoice = getInputString()
-    while not inList(box_args[0], movieChoice):
+    movie_index = inList(box_args[0], movieChoice)
+    while  movie_index == -1:
         speak("Sorry, we don't have that movie. Pick another.")
         for i in range(len(box_args[0])):
             speak(str(box_args[0][i]))
         movieChoice = getInputString()
-    player.completed["ticket"] = movieChoice
+        movie_index = inList(box_args[0], movieChoice)
+    player.completed["ticket"] = box_args[0][movie_index]
+    print box_args[0][movie_index]
     speak("Here's your ticket. Enjoy the show.")
     speak("Would you like to go to the concessions?")
     speak("Or would you like to go to the ticket checker?")
@@ -41,13 +44,15 @@ def concessionsActivity(player, menu):
             if not menu[0][i].lower() in player.completed.keys():
                 speak(str(menu[0][i]))
         menuChoice = getInputString()
-        while not inList(menu[0], menuChoice):
+        menu_index = inList(menu[0], menuChoice)
+        while menu_index == -1:
             speak("Sorry, we don't have that. Pick another.")
             menuChoice = getInputString()
-        if menuChoice.lower() == "done":
+            menu_index = inList(menu[0], menuChoice)
+        if "done" in menuChoice.lower().split():
             done = True
         else:
-            player.completed[menuChoice] = True
+            player.completed[menu[0][menu_index]] = True
             speak("Can I get anything else for you?")
     speak("Thank you. Next please!")
 
@@ -60,7 +65,7 @@ def ticketCheckerActivity(player):
     speak("Hello, ticket please")
     if player.completed["ticket"].lower() == "inside out":
         speak("Inside Out is in theater 3A, enjoy the show!")
-    if player.completed["ticket"].lower() == "tomorrow land":
+    if player.completed["ticket"].lower() == "tomorrowland":
         speak("Tomorrowland is in theater 1D, enjoy your movie!")
     if player.completed["ticket"].lower() == "minions":
         speak("Minions is in theater 3B, enjoy the show!")
@@ -77,7 +82,7 @@ def movieActivity(player):
         webbrowser.open("https://www.youtube.com/watch?v=_MC3XuMvsDI", new=1)
         fullscreen(130)
 
-    if player.completed["ticket"].lower() == "tomorrow land":
+    if player.completed["ticket"].lower() == "tomorrowland":
         webbrowser.open("https://www.youtube.com/watch?v=1k59gXTWf-A", new=1)
         time.sleep(5)
         fullscreen(132)
@@ -93,11 +98,22 @@ def movieActivity(player):
     return "quit"
 
 def inList(lst, s):
-    for x in lst:
+    for x in lst:                   #if you say exactly phrase in list
         if s.lower() == x.lower():
-            return True
-    return False
-
+            return lst.index(x)
+    if "quit" in s.lower().split(): 
+        return None
+    s = s.lower().split()           #check if you said phrase inside a longer sentence
+    for l in lst:                   #for every element in the (movie, food)
+        count = 0
+        words = l.lower().split()
+        for w in words:             #for every word in l(movie title, food name)
+            if w in s:              #if that word is in what you said
+                count += 1
+        if count == len(words):      #if you said every word in l
+            return lst.index(l)
+    return -1
+        
 
 def fullscreen(length):
     time.sleep(6)

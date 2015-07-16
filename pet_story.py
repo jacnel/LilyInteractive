@@ -32,7 +32,7 @@ walk = StoryNode("walks")
 tricks = StoryNode("tricks")
 tail = StoryNode("tail")
 
-done = StoryNode("done", "I loved talking to you. But I have to go. Goodbye!")
+done = StoryNode("done", "It was nice talking to you. But I have to go. Goodbye!")
 
 """ADD CHILDREN"""
 

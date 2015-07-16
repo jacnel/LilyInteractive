@@ -23,7 +23,6 @@ story_dict["Pets"] = pet_story.pet_story_line
 story_dict["Vault"] = _vault_story.vault_story_line
 
 def getStory():
-    return story_dict["Vault"]
     speak("Which story would you like to play?")
     for story in story_dict.keys():
         speak(story)

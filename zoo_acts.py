@@ -6,6 +6,9 @@ from run_gif import *
 
 #activities must return None or the name of the next node or "quit"
 
+yes = ['yes']
+yes_syns = [['yes', 'yup', 'yeah', 'yea', 'indeed', 'sure']]
+
 def entranceAct(player):
     speak("Hi " + player.name + ". Welcome to the San Diego Zoo!")
     x = random.random()
@@ -66,7 +69,7 @@ def penguinAct(player):
         speak("Great timing. They are feeding the penguins.")
         speak("Should we stay and watch?")
         s = getInputString()
-        if s.lower() == "yes":
+        if get_target(s, yes, yes_syns) == 'yes': 
             runGif("ZooGifs/penguin_feeding.gif")
     speak("Which animal do you want to see now?")
     for x in player.location.children:
@@ -81,7 +84,7 @@ def tigerAct(player):
         speak("There are baby tigers too!")
         speak("Do you want to look?")
         s = getInputString()
-        if s.lower() == "yes":
+        if get_target(s, yes, yes_syns) == 'yes': 
             runGif("ZooGifs/baby_tiger.gif")
     speak("What exhibit should we go to from here?")
     for x in player.location.children:
@@ -96,7 +99,7 @@ def otterAct(player):
         speak("Look! There is a special great white shark exhibit!")
         speak("Do you want to stop?")
         s = getInputString()
-        if s.lower() == "yes":
+        if get_target(s, yes, yes_syns) == 'yes': 
             runGif("ZooGifs/white_shark_feeding.gif")
     speak("Which of these animals do you want to see next?")
     for x in player.location.children:
@@ -111,5 +114,16 @@ def pandaAct(player):
         speak(x.name)
     return None
 
-
+def get_target(s, targets, targets_syn):
+    #check if user says exactly the node's name
+    for t in targets:
+        if s.lower() == t.lower():
+            return t
+    
+    s = s.lower().split()
+    for word in s:
+        for t in targets_syn:
+            if word in t:
+                return targets[targets_syn.index(t)]
+    return None
 

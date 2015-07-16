@@ -1,6 +1,6 @@
 class Animal(object):
     def __init__(self, pet_type):
-        if "dog" in pet_type:
+        if pet_type == "dog":
             self.type = "dog"
             self.feet = "paws"
             #self.mouth = "mouth"
@@ -9,7 +9,7 @@ class Animal(object):
             self.tail = True
             self.eats = "dog food"
             
-        elif "cat" in pet_type:
+        elif pet_type == "cat":
             self.type = "cat"
             self.feet = "paws"
             #self.mouth = "mouth"
@@ -17,7 +17,7 @@ class Animal(object):
             self.bc_plural = "is"
             self.tail = True
             self.eats = "cat food"
-        elif "fish" in pet_type:
+        elif pet_type == "fish":
             self.type = "fish"
             self.feet = "fins"
             #self.mouth = "mouth"
@@ -25,7 +25,7 @@ class Animal(object):
             self.bc_plural = "are"
             self.tail = False
             self.eats = "fish food"
-        elif "bird" in pet_type:
+        elif pet_type == "bird":
             self.type = "bird"
             self.feet = "claws"
             #self.mouth = "beak"
@@ -33,7 +33,7 @@ class Animal(object):
             self.bc_plural = "are"
             self.tail = False
             self.eats = "seeds"
-        elif "lizard" in pet_type:
+        elif pet_type == "lizard":
             self.type = "lizard"
             self.feet = "feet"
             #self.mouth = "mouth"
