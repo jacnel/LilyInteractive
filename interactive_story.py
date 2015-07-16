@@ -27,6 +27,10 @@ story_dict["Vault"] = _vault_story.vault_story_line
 targets_syn = []
 for name in story_dict.keys():
     targets_syn.append(stemmer.stem(name))
+print "keys are:"
+print story_dict.keys()
+print "syns are:"
+print targets_syn
 
 def getStory():
     speak("Which story would you like to play?")
@@ -55,10 +59,16 @@ def get_target(s, targets, targets_syn):        #this method looks for a one wor
     for i in s:
         temp.append(stemmer.stem(i))
     s = temp
+    print "s:"
+    print s
     for word in s:
-        for t in targets_syn:
-            if word in t:
-                return targets[targets_syn.index(t)]
+        count = 0
+        if word in targets_syn:
+            print word
+            print "found match"
+            print targets[count]
+            return targets[count]
+        count += 1
     return None
 
    
