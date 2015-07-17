@@ -179,21 +179,21 @@ def done_act(player):
     return "quit"
 
 def get_next(player, current, s):
-    split = s.lower().split()
-    if 'goodbye' in split or 'done' in split or 'quit' in split:
-        return 'done'
-    if len(current.children) == 2:
-        return current.children[0].name
-    if convo_over(player):
-        return "done"
-    num_childs = len(current.children)
-    x = random.randint(0,num_childs-2)
-    while check_completed(player.completed, current.children[x]):
-        if not flag:
-            x = random.randint(0,num_childs-2)
-        else:
-            return "done"
-    return current.children[x].name
+	split = s.lower().split()
+	if 'goodbye' in split or 'done' in split:
+		return 'done'
+	if len(current.children) == 2:
+		return current.children[0].name
+	if convo_over(player):
+		return "done"
+	num_childs = len(current.children)
+	x = random.randint(0,num_childs-2)
+	while check_completed(player.completed, current.children[x]):
+		if not flag:
+			x = random.randint(0,num_childs-2)
+		else:
+			return "done"
+	return current.children[x].name
 
 def get_target(s, targets, targets_syn):        #this method looks for a one word target in user's speech
     #check if user says exactly the node's name

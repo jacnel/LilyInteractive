@@ -86,7 +86,6 @@ def movieActivity(player):
 
     if player.completed["ticket"].lower() == "tomorrowland":
         webbrowser.open("https://www.youtube.com/watch?v=1k59gXTWf-A", new=1)
-        time.sleep(5)
         fullscreen(132)
         
     if player.completed["ticket"].lower() == "minions":
@@ -124,7 +123,7 @@ def inList(lst, s):
         
 
 def fullscreen(length):
-    time.sleep(5)
+    time.sleep(7)
     win32com.client.Dispatch("WScript.Shell").SendKeys('f')
     time.sleep(length)
     win32com.client.Dispatch("WScript.Shell").SendKeys('f')

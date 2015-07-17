@@ -22,7 +22,7 @@ story_dict = {}
 story_dict["Movie"] = movie_story.movie_story_line
 story_dict["Zoo"] = zoo_story.zoo_story_line
 story_dict["Pet"] = pet_story.pet_story_line
-story_dict["Vault"] = _vault_story.vault_story_line
+#story_dict["Vault"] = _vault_story.vault_story_line
 
 targets_syn = []
 for name in story_dict.keys():
@@ -48,24 +48,24 @@ def getStory():
         return story_dict[story]
 
 def get_target(s, targets, targets_syn):        #this method looks for a one word target in user's speech
-    #check if user says exactly the node's name
-    if "quit" in s.lower().split():
-        return "quit"
-    for t in targets:
-        if s.lower() == t.lower():
-            return t
-    
-    s = s.lower().split()
-    temp = []
-    for i in s:
-        temp.append(stemmer.stem(i))
-    s = temp
-    for word in s:
-        count = 0
-        if word in targets_syn:
-            return targets[count]
-        count += 1
-    return None
+	#check if user says exactly the node's name
+	if "quit" in s.lower().split():
+		return "quit"
+	for t in targets:
+		if s.lower() == t.lower():
+			return t
+	
+	s = s.lower().split()
+	temp = []
+	for i in s:
+		temp.append(stemmer.stem(i))
+	s = temp
+	for t in targets_syn:
+		for word in s:
+			if word == t:
+				return targets[targets_syn.index(t)]
+		
+	return None
 
    
 def runStory():
