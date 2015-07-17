@@ -43,10 +43,14 @@ def getStory():
                 speak(story)
             s = getInputString()
             story = get_target(s, story_dict.keys(), targets_syn)
+        if story == "quit":
+            return None
         return story_dict[story]
 
 def get_target(s, targets, targets_syn):        #this method looks for a one word target in user's speech
     #check if user says exactly the node's name
+    if "quit" in s.lower().split():
+        return "quit"
     for t in targets:
         if s.lower() == t.lower():
             return t
@@ -72,6 +76,8 @@ def runStory():
 	time.sleep(2)
 	#create story from nodes and player 
 	story_line = getStory()
+	if story_line == None:
+            return
 	player = Player(story_line)
 	story = Story(player, story_line) 
 	#run through the story

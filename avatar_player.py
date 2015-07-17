@@ -25,7 +25,7 @@ def run_avatar():
         global talk
         if not talk:
             talk = True
-            animation2=pyglet.resource.animation("AvatarGifs/lily_talking2.gif")
+            animation2=pyglet.resource.animation("AvatarGifs/lily_talking.gif")
         else:
             talk = False
             animation2=pyglet.resource.animation("AvatarGifs/lily_idle.gif")
