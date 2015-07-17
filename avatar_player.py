@@ -5,7 +5,7 @@ import time
 talk = False
 
 def run_avatar():
-    animation = pyglet.resource.animation("AvatarGifs/idle1.gif")
+    animation = pyglet.resource.animation("AvatarGifs/lily_idle.gif")
     sprite = pyglet.sprite.Sprite(animation)
 
     # create a window and set it to the image size
@@ -25,10 +25,10 @@ def run_avatar():
         global talk
         if not talk:
             talk = True
-            animation2=pyglet.resource.animation("AvatarGifs/talk1.gif")
+            animation2=pyglet.resource.animation("AvatarGifs/lily_talking2.gif")
         else:
             talk = False
-            animation2=pyglet.resource.animation("AvatarGifs/idle1.gif")
+            animation2=pyglet.resource.animation("AvatarGifs/lily_idle.gif")
         sprite.image = animation2
         on_draw()
     pyglet.app.run()
