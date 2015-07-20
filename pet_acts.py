@@ -24,6 +24,13 @@ for i in pet_syns:
 pet_syns = temp
 yes = ['yes']
 yes_syns = [['yes', 'yup', 'yeah', 'yea', 'indeed', 'sure']]
+temp = []
+for i in yes_syns: 
+    temp2 = []
+    for j in i:
+        temp2.append(stemmer.stem(j))
+    temp.append(temp2)
+yes_syns = temp
 
 def have_pets_act(player):
     current = player.location
@@ -148,7 +155,7 @@ def tricks_act(player):
 
 def tail_act(player):
     current = player.location
-    s = None
+    s = ""
     if pet.tail:
         speak("Is " + pet_name + "'s tail long or short?")
         s = getInputString()
