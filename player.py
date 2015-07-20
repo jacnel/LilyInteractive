@@ -35,7 +35,6 @@ class Player:
         return None
 
     def setName(self):
-        return 'Elise'
         yes = 'no'
         while self.get_target(yes, ['yes'], yes_syns) != 'yes':
             speak("What is your name?")
