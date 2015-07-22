@@ -23,32 +23,30 @@ class StoryNode:
             self.syns.append(stemmer.stem(s))       #use root of word for generality
         # add children StoryNodes to this node, possible edges in graph
         self.children = []
-        self.possibles = []
+        self.children_stems = []
         if the_children != None:
             for child in the_children:
                 if isinstance(child, StoryNode):
                     self.children.append(child)
-                    self.possibles.append(child.syns)
+                    self.children_stems.append(child.syns)
         # add activities to the node to be completed
         self.activity = None
         if an_activity != None:
             self.activity = an_activity
         
-        
-    '''def getChild(self, child):
-        for each_child in self.children:
-            if each_child == child:
-                return each_child
-            else:
-                print "No matching children were found"
-                return '''
+
 	# adds new children to a node, adding them to children list
     def addChild(self, child):
         if isinstance(child, StoryNode):
             self.children.append(child)
-            self.possibles.append(child.syns)
+            self.children_stems.append(child.syns)
         else:
             print "child is not a StoryNode"
+        return self
+
+    #adds a prerequisite
+    def addPrereq(self, prereq):
+        self.prereqs.append(prereq)
         return self
 
 	# adds new activities to a node

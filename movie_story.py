@@ -22,7 +22,7 @@ ticket_checker.addChild(movie)
 
 
 #add prerequisites (something that must be completed before moving to this node)
-ticket_checker.prereqs.append("ticket")
+ticket_checker.addPrereq("ticket")
 
 #movies and menu are lists of options for the activity
 movies = ["Inside Out", "Tomorrowland", "Minions", "Home"]

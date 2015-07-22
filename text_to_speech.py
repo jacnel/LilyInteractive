@@ -35,9 +35,7 @@ import math
 
 def speak(string):
         engine.say(string)
-        #click(100,100)
         engine.runAndWait()
-        #click(100,100)
         print string
 
 

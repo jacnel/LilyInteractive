@@ -14,30 +14,16 @@ pet_name = ""
 pet = None
 pet_types = ['dog', 'cat', 'fish', 'bird', 'lizard']
 pet_syns = [['dog', 'doggy', 'puppy', 'pooch', 'pup', 'canine'], ['cat', 'kitten', 'kitty', 'feline'], ['fish', 'fishes', 'fishies'], ['bird', 'fowl', 'birdie', 'chick', 'fledgling', 'nestling'], ['lizard']]
-#turn pet_syns into their root words
-temp = []
-for i in pet_syns: 
-    temp2 = []
-    for j in i:
-        temp2.append(stemmer.stem(j))
-    temp.append(temp2)
-pet_syns = temp
 yes = ['yes']
 yes_syns = [['yes', 'yup', 'yeah', 'yea', 'indeed', 'sure']]
-temp = []
-for i in yes_syns: 
-    temp2 = []
-    for j in i:
-        temp2.append(stemmer.stem(j))
-    temp.append(temp2)
-yes_syns = temp
+
 
 def have_pets_act(player):
     current = player.location
     speak("Hi " + player.name)
     speak (current.description)
     s = getInputString()
-    if get_target(s, yes, yes_syns) != 'yes': 
+    if player.get_target(s, yes, yes_syns) != 'yes': 
         return "done"
     return get_next(player, current, s)
 
@@ -46,7 +32,7 @@ def kinds_act(player):
     current = player.location
     speak(current.description)
     s = getInputString()
-    pet = animal.Animal(get_target(s, pet_types, pet_syns))
+    pet = animal.Animal(player.get_target(s, pet_types, pet_syns))
     return get_next(player, current, s)
 
 def name_act(player):
@@ -201,23 +187,6 @@ def get_next(player, current, s):
 		else:
 			return "done"
 	return current.children[x].name
-
-def get_target(s, targets, targets_syn):        #this method looks for a one word target in user's speech
-    #check if user says exactly the node's name
-    for t in targets:
-        if s.lower() == t.lower():
-            return t
-    
-    s = s.lower().split()
-    temp = []
-    for i in s:
-        temp.append(stemmer.stem(i))
-    s = temp
-    for word in s:
-        for t in targets_syn:
-            if word in t:
-                return targets[targets_syn.index(t)]
-    return None
 
 def convo_over(player):
     count = 0

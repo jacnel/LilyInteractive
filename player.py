@@ -1,5 +1,8 @@
 from text_to_speech import *
 from speech_recog import *
+from nltk.stem.snowball import SnowballStemmer
+
+stemmer = SnowballStemmer('english')
 
 yes_syns = [['yes', 'yup', 'yeah', 'yea', 'indeed', 'sure']]
 
@@ -15,19 +18,25 @@ class Player:
         for node in list_of_StoryNodes:
             self.completed[node.name] = False
 
-    def getLoc(self):
-        return self.location
- 
-    def addCompleted(self, current):
-        self.completed.append(current.name)
-
     def get_target(self, s, targets, targets_syn):  #this method looks for a one word target in user's speech
         #check if user says exactly the node's name
+        temp = []
+        for i in targets_syn: 
+            temp2 = []
+            for j in i:
+                temp2.append(stemmer.stem(j))
+            temp.append(temp2)
+        targets_syn = temp
+        
         for t in targets:
             if s.lower() == t.lower():
                 return t
         
         s = s.lower().split()
+        temp = []
+        for i in s:
+            temp.append(stemmer.stem(i))
+        s = temp
         for word in s:
             for t in targets_syn:
                 if word in t:

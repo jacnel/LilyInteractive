@@ -37,14 +37,14 @@ class Story(object):
         if "quit" in s:
             return None
 
-        for p in current.possibles:     #for every child of current
+        for c in current.children_stems:     #for every child of current
             count = 0
-            for el in p:                #for every word in current.child's name
-                if el in stems:         #if the user said that word
+            for stem in c:                #for every word in current.child's name
+                if stem in stems:         #if the user said that word
                     count += 1          #success, look for next word in name, if applicable
                                         #otherwise, check next child
-            if count == len(p):         #if the user said every word in current.child's name
-                return current.children[current.possibles.index(p)]
+            if count == len(c):         #if the user said every word in current.child's name
+                return current.children[current.children_stems.index(c)]
         return current
         
     def prereqsValid(self, player, newCurrent):

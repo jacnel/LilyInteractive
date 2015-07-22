@@ -4,12 +4,6 @@ from text_to_speech import *
 r = sr.Recognizer()
 r.pause_threshold = 1
 
-def voice_input():
-    try:
-        return "" + r.recognize(audio)   # recognize speech using Google Speech Recognition
-    except LookupError:                            # speech is unintelligible
-		speak("Sorry, I didn't hear that. Please say it again.")
-		return None
 
 def getInputString():                    
 	s = None
