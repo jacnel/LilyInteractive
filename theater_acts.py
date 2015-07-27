@@ -51,7 +51,7 @@ def concessionsActivity(player, menu):
             speak("Sorry, we don't have that. Pick another.")
             menuChoice = getInputString()
             menu_index = inList(menu[0], menuChoice)
-        if "done" in menuChoice.lower().split():
+        if "finished" in menuChoice.lower().split():
             done = True
         else:
             player.completed[menu[0][menu_index]] = True

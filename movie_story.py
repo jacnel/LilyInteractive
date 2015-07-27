@@ -26,7 +26,7 @@ ticket_checker.addPrereq("ticket")
 
 #movies and menu are lists of options for the activity
 movies = ["Inside Out", "Tomorrowland", "Minions", "Home"]
-menu = ["soda", "popcorn", "candy", "done"]
+menu = ["soda", "popcorn", "candy", "finished"]
 
 #create activities and add them to their corresponding nodes  
 theater.setActivity(Activity(theaterActivity))
