@@ -8,7 +8,7 @@ from text_to_speech import *
 
 #nodes
 entrance = StoryNode("entrance")
-parking_lot = StoryNode("done")
+parking_lot = StoryNode("goodbye")
 monkeys = StoryNode("monkeys")
 elephants = StoryNode("elephants")
 lions = StoryNode("lions")
